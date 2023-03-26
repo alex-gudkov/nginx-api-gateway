@@ -1,8 +1,9 @@
-FROM node:18
+FROM node:18.15.0
 
-WORKDIR /app-2
+WORKDIR /app
 
-COPY ./package.json ./package-lock.json ./
+COPY ./package.json ./
+COPY ./package-lock.json ./
 
 RUN npm install
 
