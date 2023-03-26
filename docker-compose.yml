@@ -3,13 +3,30 @@ version: '3.9'
 services:
     app_1:
         container_name: nginx_api_gateway_app_1
-        network_mode: host
+        networks:
+            - nginx_api_gateway_network
         build:
             context: ./apps/app-1
             dockerfile: Dockerfile
     app_2:
         container_name: nginx_api_gateway_app_2
-        network_mode: host
+        networks:
+            - nginx_api_gateway_network
         build:
             context: ./apps/app-2
             dockerfile: Dockerfile
+    nginx:
+        image: nginx:1.23.3
+        container_name: nginx_api_gateway_nginx
+        networks:
+            - nginx_api_gateway_network
+        ports:
+            - 8080:80
+        depends_on:
+            - app_1
+            - app_2
+        volumes:
+            - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+            - ./nginx/logs:/var/log/nginx
+networks:
+    nginx_api_gateway_network:

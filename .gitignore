@@ -1,2 +1,2 @@
 # Docker volumes
-/logs
+/nginx/logs

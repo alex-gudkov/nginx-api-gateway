@@ -19,7 +19,6 @@ $ docker rm <container-id>
 
 $ docker build ./
 $ docker run <image-id>
-
 ```
 
 Docker-compose:
